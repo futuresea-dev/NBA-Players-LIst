@@ -11,11 +11,15 @@ const App: React.FC = () => {
   const [color, setColor] = useState("#FFFFFF");
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="status-text">Loading...</p>;
   }
 
   if (error) {
-    return <p>Can not query list of NBA players, please try again.</p>;
+    return (
+      <p className="status-text">
+        Can not query list of NBA players, please try again.
+      </p>
+    );
   }
 
   const handleFavorite = (id: number) => {
@@ -29,15 +33,17 @@ const App: React.FC = () => {
     setList(_list);
   };
 
-  console.log(list);
-
   return (
     <React.Fragment>
-      <input
-        placeholder="Search player by name"
-        value={searchKey}
-        onChange={(e) => setSearchKey(e.target.value)}
-      />
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder=" "
+          value={searchKey}
+          onChange={(e) => setSearchKey(e.target.value)}
+        />
+        <button type="reset"></button>
+      </div>
 
       <input
         type="color"
